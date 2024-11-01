@@ -39,22 +39,26 @@ body {
   min-height: 100dvh;
   display: grid;
   grid-template-rows: 1fr 10vh;
-  place-content: center;
+  align-items: center;
+  justify-items: center;
   gap: 2rem;
   padding: 2rem 0;
   background-color: hsl(30, 38%, 92%);
 }
 
 .card {
+  height: fit-content;
   width: 24rem;
   border-radius: 1rem;
   overflow: hidden;
   background-color: white;
   font-family: 'Montserrat Variable';
+  cursor: default;
 }
 .card img {
   width: 100%;
   border-radius: 1rem 1rem 0 0;
+  object-fit: contain;
 }
 .desktopImage {
   display: none;
@@ -68,14 +72,17 @@ body {
 }
 .info h1 {
   font-family: 'Fraunces Variable';
-  font-size: 2rem;
-}
-.info .tag {
-  text-transform: uppercase;
-  letter-spacing: 6px;
+  font-size: clamp(2rem, 1.8vw + 1.5rem, 3rem);
+  line-height: 1.25;
 }
 .info p {
   color: hsl(228, 12%, 48%);
+  font-size: clamp(1rem, 1vw + 0.5rem, 1.1rem);
+}
+.info p.tag {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 6px;
 }
 .info .price {
   display: flex;
@@ -104,9 +111,34 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 .info button img {
   width: auto;
   height: 1rem;
   width: auto;
+}
+.info button:hover {
+  background-color: hsl(159, 35%, 19%);
+}
+
+@media (min-width: 767px) {
+  .card {
+    display: flex;
+    width: 44rem;
+  }
+  .card .mobileImage {
+    display: none;
+  }
+  .card .desktopImage {
+    display: block;
+    height: 100%;
+    width: 50%;
+    object-fit: contain;
+    border-radius: 1rem 0 0 1rem;
+  }
+  .info {
+    justify-content: space-around;
+  }
 }
